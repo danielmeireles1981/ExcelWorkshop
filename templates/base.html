@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshop Excel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <script src="{% static 'js/modal.js' %}" defer></script>
+</head>
+<body class="text-gray-900">
+  <header class="bg-white border-b">
+    <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="font-bold brand">🧮 Workshop Excel</a>
+      <div class="space-x-4 text-sm">
+        {% if request.user.is_authenticated %}
+          {% for phase in visible_phases %}
+            <a href="{% url phase.url_name %}">{{ phase.title|slice:":8" }}</a>
+          {% endfor %}
+          <a href="{% url 'accounts:profile' %}">Perfil</a>
+          <form action="{% url 'accounts:logout' %}" method="post" class="inline">
+            {% csrf_token %}
+            <button type="submit" class="text-sm hover:underline">Sair</button>
+          </form>
+        {% else %}
+          <a href="{% url 'accounts:login' %}">Entrar</a>
+          <a href="{% url 'accounts:register' %}">Cadastro</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-4">
+    {% include 'components/messages.html' %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="text-center text-xs text-gray-500 py-8">&copy; {{ now|date:'Y' }} Workshop Excel</footer>
+</body>
+</html>

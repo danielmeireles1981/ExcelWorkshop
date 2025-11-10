@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-5xl mx-auto space-y-6">
+  <h1 class="text-2xl font-bold">Fase 02 — Controle de Estoque</h1>
+  <p class="text-sm text-gray-600">Utilize a tabela abaixo como base para realizar os exercícios propostos.</p>
+
+  <div class="card">
+    <h2 class="text-lg font-semibold mb-2">Tabela de Dados: Controle de Estoque</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Código</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Anterior</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Entrada</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Saída</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estoque Mínimo</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1000</td><td class="px-6 py-4 whitespace-nowrap text-sm">Multifuncional HP 1320</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td><td class="px-6 py-4 whitespace-nowrap text-sm">50</td><td class="px-6 py-4 whitespace-nowrap text-sm">70</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1001</td><td class="px-6 py-4 whitespace-nowrap text-sm">Teclado</td><td class="px-6 py-4 whitespace-nowrap text-sm">200</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td><td class="px-6 py-4 whitespace-nowrap text-sm">125</td><td class="px-6 py-4 whitespace-nowrap text-sm">50</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1002</td><td class="px-6 py-4 whitespace-nowrap text-sm">Mouse Óptico</td><td class="px-6 py-4 whitespace-nowrap text-sm">250</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td><td class="px-6 py-4 whitespace-nowrap text-sm">120</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1003</td><td class="px-6 py-4 whitespace-nowrap text-sm">Monitor de Plasma 17"</td><td class="px-6 py-4 whitespace-nowrap text-sm">25</td><td class="px-6 py-4 whitespace-nowrap text-sm">50</td><td class="px-6 py-4 whitespace-nowrap text-sm">30</td><td class="px-6 py-4 whitespace-nowrap text-sm">75</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1004</td><td class="px-6 py-4 whitespace-nowrap text-sm">Gravador de DVD</td><td class="px-6 py-4 whitespace-nowrap text-sm">150</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td><td class="px-6 py-4 whitespace-nowrap text-sm">120</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1005</td><td class="px-6 py-4 whitespace-nowrap text-sm">Caixa de Som</td><td class="px-6 py-4 whitespace-nowrap text-sm">170</td><td class="px-6 py-4 whitespace-nowrap text-sm">10</td><td class="px-6 py-4 whitespace-nowrap text-sm">120</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1006</td><td class="px-6 py-4 whitespace-nowrap text-sm">Microfone</td><td class="px-6 py-4 whitespace-nowrap text-sm">200</td><td class="px-6 py-4 whitespace-nowrap text-sm">150</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td><td class="px-6 py-4 whitespace-nowrap text-sm">75</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1007</td><td class="px-6 py-4 whitespace-nowrap text-sm">WebCAM</td><td class="px-6 py-4 whitespace-nowrap text-sm">150</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td><td class="px-6 py-4 whitespace-nowrap text-sm">75</td><td class="px-6 py-4 whitespace-nowrap text-sm">75</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1008</td><td class="px-6 py-4 whitespace-nowrap text-sm">Pen drive</td><td class="px-6 py-4 whitespace-nowrap text-sm">500</td><td class="px-6 py-4 whitespace-nowrap text-sm">150</td><td class="px-6 py-4 whitespace-nowrap text-sm">200</td><td class="px-6 py-4 whitespace-nowrap text-sm">200</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1009</td><td class="px-6 py-4 whitespace-nowrap text-sm">Impressora HP 5650</td><td class="px-6 py-4 whitespace-nowrap text-sm">50</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td><td class="px-6 py-4 whitespace-nowrap text-sm">70</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">1010</td><td class="px-6 py-4 whitespace-nowrap text-sm">Câmera Digital Sony</td><td class="px-6 py-4 whitespace-nowrap text-sm">70</td><td class="px-6 py-4 whitespace-nowrap text-sm">50</td><td class="px-6 py-4 whitespace-nowrap text-sm">25</td><td class="px-6 py-4 whitespace-nowrap text-sm">100</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="text-lg font-semibold mb-2">Enunciado do Exercício</h2>
+    <ol class="list-decimal pl-6 space-y-2">
+      {% for step in steps %}
+        <li>
+          <strong>{{ step.title }}</strong><br>
+          <span class="text-sm">{{ step.instructions }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="card mt-8">
+    <h2 class="text-lg font-semibold">Envie sua planilha final (.xlsx)</h2>
+    <p class="text-sm text-gray-600 mb-4">Envie um único arquivo contendo a resolução do exercício acima.</p>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-accent">Enviar Resposta da Fase 02</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

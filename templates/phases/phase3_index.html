@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-5xl mx-auto space-y-6">
+  <h1 class="text-2xl font-bold">Fase 03 — Gratificação de Natal com PROCV</h1>
+  <p class="text-sm text-gray-600">Utilize as tabelas abaixo como base para realizar os exercícios propostos.</p>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="md:col-span-2 card">
+      <h2 class="text-lg font-semibold mb-2">Tabela Principal: Funcionários</h2>
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Funcionário</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Salário(R$)</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Percentual</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Abono (R$)</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Salário Final</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr><td class="px-6 py-4">CARLOS</td><td class="px-6 py-4">500,00</td><td class="px-6 py-4"></td><td class="px-6 py-4"></td><td class="px-6 py-4"></td></tr>
+          <tr><td class="px-6 py-4">PEDRO</td><td class="px-6 py-4">750,00</td><td class="px-6 py-4"></td><td class="px-6 py-4"></td><td class="px-6 py-4"></td></tr>
+          <tr><td class="px-6 py-4">ANTÔNIO</td><td class="px-6 py-4">1.500,00</td><td class="px-6 py-4"></td><td class="px-6 py-4"></td><td class="px-6 py-4"></td></tr>
+          <tr><td class="px-6 py-4">MARIA</td><td class="px-6 py-4">2.500,00</td><td class="px-6 py-4"></td><td class="px-6 py-4"></td><td class="px-6 py-4"></td></tr>
+          <tr><td class="px-6 py-4">CLÁUDIO</td><td class="px-6 py-4">2.000,00</td><td class="px-6 py-4"></td><td class="px-6 py-4"></td><td class="px-6 py-4"></td></tr>
+          <tr><td class="px-6 py-4">JOAQUIM</td><td class="px-6 py-4">1.000,00</td><td class="px-6 py-4"></td><td class="px-6 py-4"></td><td class="px-6 py-4"></td></tr>
+          <tr><td class="px-6 py-4">MARCOS</td><td class="px-6 py-4">400,00</td><td class="px-6 py-4"></td><td class="px-6 py-4"></td><td class="px-6 py-4"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2 class="text-lg font-semibold mb-2">Tabela de Abono</h2>
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Salário(R$)</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Percentual</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr><td class="px-6 py-4">400,00</td><td class="px-6 py-4">100%</td></tr>
+          <tr><td class="px-6 py-4">1.000,00</td><td class="px-6 py-4">50%</td></tr>
+          <tr><td class="px-6 py-4">2.000,00</td><td class="px-6 py-4">10%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="text-lg font-semibold mb-2">Enunciado do Exercício</h2>
+    <ol class="list-decimal pl-6 space-y-2">
+      {% for step in steps %}
+        <li>
+          <strong>{{ step.title }}</strong><br>
+          <span class="text-sm">{{ step.instructions }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="card mt-8">
+    <h2 class="text-lg font-semibold">Envie sua planilha final (.xlsx)</h2>
+    <p class="text-sm text-gray-600 mb-4">Envie um único arquivo contendo a resolução do exercício acima.</p>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-accent">Enviar Resposta da Fase 03</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-3xl mx-auto space-y-6">
+  <h1 class="text-2xl font-bold">{{ exercise.title }}</h1>
+  <p>{{ exercise.description }}</p>
+  <div class="card">
+    <p><strong>Fórmula de referência:</strong> <code>{{ exercise.reference_formula }}</code></p>
+  </div>
+  <a href="{% url 'phases:phase1_index' %}" class="btn btn-primary">
+    &larr; Voltar para a lista de exercícios
+  </a>
+</div>
+{% endblock %}

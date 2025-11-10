@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="max-w-3xl mx-auto space-y-6">
+    <h1 class="text-3xl font-bold">Workshop Excel — O Jogo da Vida</h1>
+    <p>Escolha uma fase para começar:</p>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {% for phase in visible_phases %}
+        <a class="card relative" href="{% url phase.url_name %}">
+          {{ phase.title }}
+          {% if phase.number in completed_phases %}
+            <span class="absolute top-2 right-2 text-xs font-bold text-green-600">✅ Concluído</span>
+          {% endif %}
+        </a>
+      {% empty %}
+        <p class="col-span-full">Nenhuma fase liberada no momento. Volte em breve!</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

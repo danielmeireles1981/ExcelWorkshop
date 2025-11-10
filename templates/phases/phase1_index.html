@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-5xl mx-auto space-y-6">
+  <div class="card">
+    <h2 class="text-lg font-semibold mb-2">Dados para os Exercícios da Fase 01</h2>
+    <p class="text-sm text-gray-600 mb-4">Os alunos deverão criar esta tabela no Excel para realizar os exercícios propostos.</p>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendedor</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Região</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Produto</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantidade</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor Unitário</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Venda</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">05/01/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Fernanda</td><td class="px-6 py-4 whitespace-nowrap text-sm">SP</td><td class="px-6 py-4 whitespace-nowrap text-sm">Notebook</td><td class="px-6 py-4 whitespace-nowrap text-sm">2</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 3.500,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 7.000,00</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">07/01/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Marcos</td><td class="px-6 py-4 whitespace-nowrap text-sm">MG</td><td class="px-6 py-4 whitespace-nowrap text-sm">Monitor</td><td class="px-6 py-4 whitespace-nowrap text-sm">1</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 1.200,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 1.200,00</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">08/01/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Ana</td><td class="px-6 py-4 whitespace-nowrap text-sm">RJ</td><td class="px-6 py-4 whitespace-nowrap text-sm">Mouse</td><td class="px-6 py-4 whitespace-nowrap text-sm">5</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 120,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 600,00</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">10/01/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Carlos</td><td class="px-6 py-4 whitespace-nowrap text-sm">SP</td><td class="px-6 py-4 whitespace-nowrap text-sm">Teclado</td><td class="px-6 py-4 whitespace-nowrap text-sm">4</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 300,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 1.200,00</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">15/01/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Fernanda</td><td class="px-6 py-4 whitespace-nowrap text-sm">MG</td><td class="px-6 py-4 whitespace-nowrap text-sm">Monitor</td><td class="px-6 py-4 whitespace-nowrap text-sm">3</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 1.150,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 3.450,00</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">20/01/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Marcos</td><td class="px-6 py-4 whitespace-nowrap text-sm">SP</td><td class="px-6 py-4 whitespace-nowrap text-sm">Notebook</td><td class="px-6 py-4 whitespace-nowrap text-sm">3</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 3.400,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 10.200,00</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">25/01/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Ana</td><td class="px-6 py-4 whitespace-nowrap text-sm">RJ</td><td class="px-6 py-4 whitespace-nowrap text-sm">Monitor</td><td class="px-6 py-4 whitespace-nowrap text-sm">2</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 1.250,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 2.500,00</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">28/01/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Fernanda</td><td class="px-6 py-4 whitespace-nowrap text-sm">SP</td><td class="px-6 py-4 whitespace-nowrap text-sm">Teclado</td><td class="px-6 py-4 whitespace-nowrap text-sm">1</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 290,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 290,00</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">30/01/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Carlos</td><td class="px-6 py-4 whitespace-nowrap text-sm">MG</td><td class="px-6 py-4 whitespace-nowrap text-sm">Mouse</td><td class="px-6 py-4 whitespace-nowrap text-sm">10</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 100,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 1.000,00</td></tr>
+          <tr><td class="px-6 py-4 whitespace-nowrap text-sm">01/02/2023</td><td class="px-6 py-4 whitespace-nowrap text-sm">Marcos</td><td class="px-6 py-4 whitespace-nowrap text-sm">SP</td><td class="px-6 py-4 whitespace-nowrap text-sm">Teclado</td><td class="px-6 py-4 whitespace-nowrap text-sm">6</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 310,00</td><td class="px-6 py-4 whitespace-nowrap text-sm">R$ 1.860,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h1 class="text-2xl font-bold">Fase 01 — Revisão de Excel</h1>
+  <p class="text-sm text-gray-600">Resolva os exercícios e envie seus arquivos (.xlsx) como resposta.</p>
+  <ul class="space-y-2">
+    {% for ex in exercises %}
+      <li class="card flex items-center justify-between">
+        <div>
+          <div class="font-semibold">{{ ex.title }}</div>
+          <div class="text-xs text-gray-500">Fórmula: {{ ex.reference_formula }}</div>
+        </div>
+        <button class="btn btn-primary open-exercise-modal" data-url="{% url 'phases:api_exercise_details' ex.slug %}">Abrir</button>
+      </li>
+    {% empty %}
+      <li>Sem exercícios ainda.</li>
+    {% endfor %}
+  </ul>
+
+  <div class="card mt-8">
+    <h2 class="text-lg font-semibold">Envie sua planilha final (.xlsx)</h2>
+    <p class="text-sm text-gray-600 mb-4">Envie um único arquivo contendo a resolução de todos os exercícios acima.</p>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-accent">Enviar Resposta da Fase 01</button>
+    </form>
+  </div>
+
+  <!-- Estrutura do Modal -->
+  <div id="exerciseModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+    <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-1/2 shadow-lg rounded-md bg-white">
+      <div class="flex justify-between items-center pb-3">
+        <h3 class="text-2xl font-bold text-gray-900" id="modalTitle"></h3>
+        <button class="text-gray-400 hover:text-gray-600 close-modal">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="mt-2 text-gray-700 space-y-4">
+        <p id="modalDescription"></p>
+        <div class="card">
+          <p><strong>Fórmula de referência:</strong> <code id="modalFormula"></code></p>
+        </div>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button class="btn btn-primary close-modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-4xl mx-auto text-center py-12">
+  <h1 class="text-5xl font-bold text-gray-800">
+    Domine o Excel de forma <span style="color: var(--excel-green);">prática e divertida</span>.
+  </h1>
+  <p class="mt-4 text-lg text-gray-600">
+    Bem-vindo ao Workshop Excel, uma plataforma gamificada desenvolvida em parceria com o SENAI para transformar seu aprendizado.
+    Resolva desafios, complete fases e construa seu conhecimento passo a passo.
+  </p>
+  <div class="mt-8 flex justify-center gap-4">
+    <a href="{% url 'accounts:register' %}" class="btn btn-accent px-8 py-3 text-lg">
+      Comece a aprender agora
+    </a>
+    <a href="{% url 'accounts:login' %}" class="btn btn-primary px-8 py-3 text-lg">
+      Já tenho uma conta
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-5xl mx-auto space-y-6">
+  <h1 class="text-2xl font-bold">Meu Perfil</h1>
+  {% if profile %}
+    <div class="card">
+      <div class="text-5xl">{{ profile.avatar_emoji }}</div>
+      <p><strong>Usuário:</strong> {{ request.user.username }}</p>
+      <p><strong>E-mail:</strong> {{ request.user.email }}</p>
+      <p><strong>Perfil Profissional:</strong> {{ profile.get_professional_profile_display }}</p>
+    </div>
+  {% endif %}
+
+  <div class="space-y-3">
+    <h2 class="text-xl font-semibold">O que cada perfil significa?</h2>
+    <ul class="list-disc pl-6">
+      <li><strong>Estudante</strong>: foco em aprender fundamentos do Excel para estudos e primeiros projetos.</li>
+      <li><strong>Empreendedor Júnior</strong>: quer aplicar Excel em fluxo de caixa simples, orçamentos e vendas iniciais.</li>
+      <li><strong>Analista de Dados Jr.</strong>: busca fórmulas, limpeza básica e análise descritiva com gráficos.</li>
+      <li><strong>Assistente Financeiro</strong>: rotinas de receitas, despesas, conciliações e relatórios mensais.</li>
+      <li><strong>Outro</strong>: perfil livre para objetivos personalizados.</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

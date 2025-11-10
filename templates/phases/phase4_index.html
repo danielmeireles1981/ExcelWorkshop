@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-5xl mx-auto space-y-6">
+  <h1 class="text-2xl font-bold">Fase 04 — Desafio Final: Orçamento Pessoal Completo</h1>
+  <p class="text-sm text-gray-600">Este é o desafio supremo! Siga os passos para construir uma ferramenta de orçamento pessoal que você poderá usar no seu dia a dia.</p>
+
+  <div class="card">
+    <h2 class="text-lg font-semibold mb-2">Passo a Passo do Projeto</h2>
+    <ol class="list-decimal pl-6 space-y-4">
+      {% for step in steps %}
+        <li>
+          <strong>{{ step.title }}</strong><br>
+          <span class="text-sm">{{ step.instructions }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="card mt-8">
+    <h2 class="text-lg font-semibold">Envie sua obra-prima (.xlsx)</h2>
+    <p class="text-sm text-gray-600 mb-4">Envie sua planilha de orçamento pessoal finalizada.</p>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-accent">Entregar Desafio Final</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
