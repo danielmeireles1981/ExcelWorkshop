@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Exercise(models.Model):
     """Exercícios da Fase 01, ligados às funções do arquivo aula00.pdf."""
@@ -39,10 +40,23 @@ class ExternalActivity(models.Model):
     def __str__(self):
         return f"{self.get_provider_display()} — {self.title}"
 
+class UserPhaseAttempt(models.Model):
+    """Registra quando um usuário inicia uma fase para controle de tempo."""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    phase_number = models.PositiveIntegerField()
+    start_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'phase_number') # Garante que só há um registro de início por usuário/fase
+
+    def __str__(self):
+        return f"Tentativa de {self.user.username} na Fase {self.phase_number}"
+
 class PhaseRelease(models.Model):
     """Controla a liberação de cada fase para os usuários."""
     phase_number = models.PositiveIntegerField(unique=True, verbose_name="Número da Fase")
     is_released = models.BooleanField(default=False, verbose_name="Liberada para todos os usuários?")
+    duration_minutes = models.PositiveIntegerField(default=60, verbose_name="Duração da Fase (minutos)")
 
     class Meta:
         ordering = ('phase_number',)

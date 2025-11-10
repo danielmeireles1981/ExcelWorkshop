@@ -18,6 +18,7 @@
           {% for phase in visible_phases %}
             <a href="{% url phase.url_name %}">{{ phase.title|slice:":8" }}</a>
           {% endfor %}
+          <a href="{% url 'core:ranking' %}">Ranking</a>
           <a href="{% url 'accounts:profile' %}">Perfil</a>
           <form action="{% url 'accounts:logout' %}" method="post" class="inline">
             {% csrf_token %}

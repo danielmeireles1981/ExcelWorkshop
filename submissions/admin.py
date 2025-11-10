@@ -3,6 +3,6 @@ from .models import Submission
 
 @admin.register(Submission)
 class SubmissionAdmin(admin.ModelAdmin):
-    list_display = ("id", "user", "phase", "exercise", "created_at")
+    list_display = ("id", "user", "phase", "total_score", "created_at")
     list_filter = ("phase", "created_at")
     search_fields = ("user__username",)

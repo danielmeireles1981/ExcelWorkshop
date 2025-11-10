@@ -7,6 +7,7 @@
       <div class="text-5xl">{{ profile.avatar_emoji }}</div>
       <p><strong>Usuário:</strong> {{ request.user.username }}</p>
       <p><strong>E-mail:</strong> {{ request.user.email }}</p>
+      <p><strong>Pontuação Total:</strong> {{ total_score }} pontos 🏆</p>
       <p><strong>Perfil Profissional:</strong> {{ profile.get_professional_profile_display }}</p>
     </div>
   {% endif %}
