@@ -1,24 +1,57 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-  <div class="max-w-3xl mx-auto space-y-6">
-    <h1 class="text-3xl font-bold">Workshop Excel — O Jogo da Vida</h1>
-    <p>Escolha uma fase para começar:</p>
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {% for phase in visible_phases %}
-        <a class="card relative" href="{% url phase.url_name %}">
-          <div class="flex flex-col h-full">
-            <div class="flex-grow">{{ phase.title }}</div>
-            {% if phase.number < 5 %}
-            <div class="text-xs text-gray-500 mt-2">🕒 Tempo: {{ phase.duration }} min</div>
-            {% endif %}
+  <div class="space-y-10">
+    <!-- Hero -->
+    <section class="relative overflow-hidden bg-gradient-to-r from-emerald-600 to-green-700 text-white">
+      <div class="grid md:grid-cols-2 gap-6 items-center p-8 md:p-10">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">Workshop Excel — O Jogo da Vida</h1>
+          <p class="mt-3 text-emerald-100">Domine fórmulas, tabelas e desafios práticos em 5 fases progressivas, com ranking.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="{% url 'phases:phase1_index' %}" class="btn bg-white text-emerald-700 font-bold">Começar</a>
+            <a href="{% url 'core:ranking' %}" class="btn btn-accent">Ranking</a>
           </div>
-          {% if phase.number in completed_phases %}
-            <span class="absolute top-2 right-2 text-xs font-bold" style="color: var(--excel-green);">✅ Concluído</span>
-          {% endif %}
-        </a>
-      {% empty %}
-        <p class="col-span-full">Nenhuma fase liberada no momento. Volte em breve!</p>
-      {% endfor %}
-    </div>
+        </div>
+        <div class="relative hidden md:block">
+          <img src="{% static 'img/excelion01.png' %}" alt="Mestre Excelion" class="w-full max-h-60 md:max-h-64 object-contain rounded-xl shadow-2xl drop-shadow-2xl transition-transform duration-300 ease-out hover:scale-105"/>
+          <div class="absolute -bottom-3 -left-3 bg-white/10 rounded-xl backdrop-blur px-3 py-2 text-sm">Desafios guiados por Excelion</div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Fases -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Fases do Workshop</h2>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {% for phase in visible_phases %}
+          <a href="{% url phase.url_name %}" class="group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-xl">
+            {% with img_name='img/imagem'|add:phase.number|add:'.png' %}
+              <img src="{% static img_name %}" alt="Fase {{ phase.number }}" class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition" />
+            {% endwith %}
+            <div class="relative z-10 flex flex-col h-full">
+              <div class="flex items-center justify-between">
+                <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 text-xs font-semibold">Fase {{ phase.number }}</span>
+                {% if phase.number in completed_phases %}
+                <span class="inline-flex items-center rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[11px] font-bold">✅ Concluída</span>
+                {% endif %}
+              </div>
+              <div class="mt-3 font-semibold text-lg">{{ phase.title }}</div>
+              {% if phase.number < 5 %}
+                <div class="mt-2 text-xs text-gray-600">🕒 Duração estimada: <span class="font-semibold">{{ phase.duration }} min</span></div>
+              {% endif %}
+              <div class="mt-auto pt-4 flex items-center justify-between text-sm">
+                <span class="text-emerald-700 font-semibold group-hover:underline">Acessar conteúdo</span>
+                <span class="text-gray-400">→</span>
+              </div>
+            </div>
+          </a>
+        {% empty %}
+          <p class="col-span-full text-center text-gray-600">Nenhuma fase liberada no momento. Volte em breve!</p>
+        {% endfor %}
+      </div>
+    </section>
   </div>
 {% endblock %}
