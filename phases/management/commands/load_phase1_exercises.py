@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from phases.models import Exercise, GuideStep, ExternalActivity
+from phases.models import Exercise, GuideStep, ExternalActivity, QuizQuestion
 
 PHASE1 = [
     (1, "Operações Básicas — Soma", "operacoes-soma", """✅ SOMA(<strong>núm1</strong>; [<strong>núm2</strong>]; ...)<br><br><strong>Função:</strong> Soma todos os números em um intervalo de células.<br><strong>Exemplo de Uso:</strong> Para calcular o total da coluna 'Quantidade'.<br><strong>Fórmula:</strong> <code>=SOMA(E2:E11)</code><br><strong>Explicação:</strong> Adiciona todos os valores do intervalo de E2 a E11.""", "SOMA"),
@@ -113,9 +113,68 @@ PHASE4_STEPS = [
     (7, 4, "Gráfico de Evolução Financeira", "Crie um Gráfico de Colunas simples comparando o 'Total de Receitas', 'Total de Despesas' e o 'Saldo do Mês' lado a lado."),
 ]
 
+QUIZ_QUESTIONS = [
+    # Fase 01
+    (1, "Referências absolutas usam o símbolo $ (ex.: $B$3).", "Verdadeiro"),
+    (1, "CONT.VALORES conta apenas células com números.", "Falso"),
+    (1, "SOMASE pode somar um intervalo diferente do intervalo de critérios.", "Verdadeiro"),
+    (1, "A média considera células vazias como zero por padrão.", "Falso"),
+    (1, "Ctrl+; insere a data atual na célula.", "Verdadeiro"),
+    (1, "Não é possível classificar uma lista que contém células mescladas.", "Verdadeiro"),
+    (1, "Preenchimento Relâmpago detecta padrões e preenche automaticamente.", "Verdadeiro"),
+    (1, "Formatação condicional altera o valor da célula.", "Falso"),
+    (1, "Converter um intervalo em Tabela (Ctrl+T) habilita filtros automáticos.", "Verdadeiro"),
+    (1, "A função SOMA ignora números armazenados como texto (ex.: \"10\").", "Verdadeiro"),
+    # Fase 02
+    (2, "Saldo atual pode ser calculado como Anterior + Entrada − Saída.", "Verdadeiro"),
+    (2, "É possível sinalizar estoque abaixo do mínimo com SE.", "Verdadeiro"),
+    (2, "Os formatos Contábil e Moeda são exatamente iguais.", "Falso"),
+    (2, "Validação de Dados pode impedir entradas negativas na coluna Entrada.", "Verdadeiro"),
+    (2, "SOMASES permite somar por produto e região ao mesmo tempo.", "Verdadeiro"),
+    (2, "PROCV pode retornar valores de colunas à esquerda do valor procurado.", "Falso"),
+    (2, "Formatar como Tabela permite ativar a Linha de Totais com SOMA automática.", "Verdadeiro"),
+    (2, "Filtros automáticos não funcionam quando a lista é uma Tabela.", "Falso"),
+    (2, "É possível ordenar por múltiplas colunas, como Produto e Código.", "Verdadeiro"),
+    (2, "SOMASE não aceita critérios com operadores como \">=100\".", "Falso"),
+    # Fase 03
+    (3, "PROCV com correspondência exata usa o quarto argumento FALSO.", "Verdadeiro"),
+    (3, "PROCV aproximado requer a primeira coluna do intervalo ordenada.", "Verdadeiro"),
+    (3, "No PROCV, o índice da coluna começa em 0.", "Falso"),
+    (3, "ÍNDICE+CORRESP pode substituir PROCV com mais flexibilidade.", "Verdadeiro"),
+    (3, "Quando não encontra o valor, PROCV retorna #N/D.", "Verdadeiro"),
+    (3, "Se houver duplicatas, PROCV retorna todas as correspondências.", "Falso"),
+    (3, "SEERRO pode exibir um texto amigável quando PROCV falha.", "Verdadeiro"),
+    (3, "PROCV diferencia maiúsculas de minúsculas.", "Falso"),
+    (3, "Misturar números e texto (ex.: \"101\" vs 101) pode causar #N/D no PROCV.", "Verdadeiro"),
+    (3, "PROCX consegue procurar à esquerda, ao contrário do PROCV.", "Verdadeiro"),
+    # Fase 04
+    # Fase 01
+    (1, "Referências absolutas usam o símbolo $ (ex.: $B$3).", "Verdadeiro"),
+    (1, "CONT.VALORES conta apenas células com números.", "Falso"),
+    (1, "SOMASE pode somar um intervalo diferente do intervalo de critérios.", "Verdadeiro"),
+    (1, "A média considera células vazias como zero por padrão.", "Falso"),
+    (1, "Ctrl+; insere a data atual na célula.", "Verdadeiro"),
+    (1, "Não é possível classificar uma lista que contém células mescladas.", "Verdadeiro"),
+    (1, "Preenchimento Relâmpago detecta padrões e preenche automaticamente.", "Verdadeiro"),
+    (1, "Formatação condicional altera o valor da célula.", "Falso"),
+    (1, "Converter um intervalo em Tabela (Ctrl+T) habilita filtros automáticos.", "Verdadeiro"),
+    (1, "A função SOMA ignora números armazenados como texto (ex.: \"10\").", "Verdadeiro"),
+    # Fase 04
+    (4, "SOMASES pode somar gastos por Categoria e por Mês simultaneamente.", "Verdadeiro"),
+    (4, "Gráfico de pizza é ideal para 25–30 categorias distintas.", "Falso"),
+    (4, "Referências estruturadas de Tabela permitem usar [@Valor] nas fórmulas.", "Verdadeiro"),
+    (4, "A função MÊS devolve um número de 1 a 12 a partir de uma data.", "Verdadeiro"),
+    (4, "Formatos personalizados permitem mostrar negativos em vermelho.", "Verdadeiro"),
+    (4, "SE aninhados podem calcular faixas de desconto por valor.", "Verdadeiro"),
+    (4, "Proteger planilha impede qualquer edição sem senha em todas as células.", "Falso"),
+    (4, "Segmentação de Dados (Slicer) pode filtrar Tabelas e Tabelas Dinâmicas.", "Verdadeiro"),
+    (4, "HOJE() atualiza automaticamente na abertura da planilha.", "Verdadeiro"),
+    (4, "Não é possível criar listas suspensas com Validação de Dados.", "Falso"),
+]
+
 PHASE5_ACTIVITIES = [
-    ("kahoot", "Quiz Final de Excel", "https://create.kahoot.it/", "Você pode adicionar o HTML de incorporação do seu Kahoot aqui para que ele apareça diretamente na página."),
-    ("genially", "Apresentação Interativa: Resumo do Curso", "https://genial.ly/", "Você pode adicionar o HTML de incorporação do seu Genially aqui."),
+    ("kahoot", "Quiz Final de Excel", "https://www.kahoot.it", "<iframe src='https://kahoot.it/embed/your-quiz-id' width='980' height='600'></iframe>"),
+    
 ]
 
 class Command(BaseCommand):
@@ -125,8 +184,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         Exercise.objects.all().delete()
         GuideStep.objects.all().delete()
+        QuizQuestion.objects.all().delete() # Limpa as perguntas do quiz
         ExternalActivity.objects.all().delete()
-        self.stdout.write("Modelos antigos de Exercícios, Passos e Atividades Externas deletados.")
+        self.stdout.write("Modelos antigos de Exercícios, Passos, Questões de Quiz e Atividades Externas deletados.")
         
         exercises_to_create = [
             Exercise(order=order, title=title, slug=slug, description=description, reference_formula=formula)
@@ -142,6 +202,13 @@ class Command(BaseCommand):
         ]
         GuideStep.objects.bulk_create(steps_to_create, batch_size=100)
         self.stdout.write(self.style.SUCCESS("Fases 02, 03 e 04 populadas."))
+        
+        quiz_questions_to_create = [
+            QuizQuestion(phase_number=phase_number, question_text=question, answer_text=answer)
+            for phase_number, question, answer in QUIZ_QUESTIONS
+        ]
+        QuizQuestion.objects.bulk_create(quiz_questions_to_create)
+        self.stdout.write(self.style.SUCCESS("Questões do Quiz populadas."))
 
         activities_to_create = [
             ExternalActivity(provider=provider, title=title, url=url, embed_html=embed_html)

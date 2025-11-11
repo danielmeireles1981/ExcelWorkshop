@@ -10,5 +10,6 @@ urlpatterns = [
     path("fase2/", views.phase2_guide, name="phase2_guide"),
     path("fase3/", views.phase3_index, name="phase3_index"),
     path("fase4/", views.phase4_index, name="phase4_index"),
-    path("fase5/", views.phase5_index, name="phase5_index"),
+    path("quiz-geral/", views.all_phases_quiz_view, name="all_phases_quiz"),
+    path("fase5/", views.phase5_index, name="phase5_index"), # Mantém a Fase 5 no final
 ]

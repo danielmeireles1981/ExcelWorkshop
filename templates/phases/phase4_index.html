@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="max-w-5xl mx-auto space-y-6">
+  <a href="{% url 'core:home' %}" class="text-sm text-gray-600 hover:underline">&larr; Voltar para a Home</a>
+
+  {% if phase_info and phase_info.story %}
+  <div class="card">
+      <img src="{% static 'img/imagem4.png' %}" alt="Mestre Excelion no Desafio Final" class="w-full h-64 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-bold mb-2" style="color: var(--excel-green);">O Desafio Final do Mestre Excelion</h2>
+      <p class="text-gray-700 whitespace-pre-wrap">{{ phase_info.story }}</p>
+  </div>
+  {% endif %}
+
   <h1 class="text-2xl font-bold">Fase 04 — Desafio Final: Orçamento Pessoal Completo</h1>
   <p class="text-sm text-gray-600">Este é o desafio supremo! Siga os passos para construir uma ferramenta de orçamento pessoal que você poderá usar no seu dia a dia.</p>
 
@@ -21,6 +32,7 @@
     <p class="text-sm text-gray-600 mb-4">Envie sua planilha de orçamento pessoal finalizada.</p>
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
       {{ form.as_p }}
+      <br>
       <button class="btn btn-accent">Entregar Desafio Final</button>
     </form>
   </div>

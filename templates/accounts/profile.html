@@ -1,16 +1,52 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="max-w-5xl mx-auto space-y-6">
-  <h1 class="text-2xl font-bold">Meu Perfil</h1>
+  <a href="{% url 'core:home' %}" class="text-sm text-gray-600 hover:underline">&larr; Voltar para a Home</a>
+  <div class="flex items-center space-x-4">
+      <h1 class="text-2xl font-bold">Meu Perfil</h1>
+  </div>
   {% if profile %}
     <div class="card">
       <div class="text-5xl">{{ profile.avatar_emoji }}</div>
+      <br>
       <p><strong>Usuário:</strong> {{ request.user.username }}</p>
+      <br>
       <p><strong>E-mail:</strong> {{ request.user.email }}</p>
+      <br>
       <p><strong>Pontuação Total:</strong> {{ total_score }} pontos 🏆</p>
+      <br>
       <p><strong>Perfil Profissional:</strong> {{ profile.get_professional_profile_display }}</p>
     </div>
   {% endif %}
+
+  <div class="card">
+    <h2 class="text-xl font-semibold mb-4">Meus Envios</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fase</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pontuação</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Arquivo</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          {% for sub in submissions %}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap font-semibold">Fase {{ sub.phase }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ sub.total_score }} pts</td>
+              <td class="px-6 py-4 whitespace-nowrap"><a href="{{ sub.file.url }}" download>Baixar arquivo</a></td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ sub.created_at|date:"d/m/Y H:i" }}</td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="4" class="px-6 py-4 text-center">Você ainda não enviou nenhum exercício.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   <div class="space-y-3">
     <h2 class="text-xl font-semibold">O que cada perfil significa?</h2>

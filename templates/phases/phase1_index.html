@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="max-w-5xl mx-auto space-y-6">
+  <a href="{% url 'core:home' %}" class="text-sm text-gray-600 hover:underline">&larr; Voltar para a Home</a>
+
+  {% if phase_info and phase_info.story %}
+  <div class="card">
+      <img src="{% static 'img/imagem1.png' %}" alt="Mestre Excelion" class="w-full h-64 object-cover rounded-t-lg mb-4">
+      <h2 class="text-2xl font-bold mb-2" style="color: var(--excel-green);">Uma mensagem do Mestre Excelion</h2>
+      <p class="text-gray-700 whitespace-pre-wrap">{{ phase_info.story }}</p>
+  </div>
+  {% endif %}
+
   <div class="card">
     <h2 class="text-lg font-semibold mb-2">Dados para os Exercícios da Fase 01</h2>
     <p class="text-sm text-gray-600 mb-4">Os alunos deverão criar esta tabela no Excel para realizar os exercícios propostos.</p>
@@ -54,6 +65,7 @@
     <p class="text-sm text-gray-600 mb-4">Envie um único arquivo contendo a resolução de todos os exercícios acima.</p>
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
       {{ form.as_p }}
+      <br>
       <button class="btn btn-accent">Enviar Resposta da Fase 01</button>
     </form>
   </div>

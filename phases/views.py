@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.utils import timezone
 from datetime import timedelta
 
-from .models import Exercise, GuideStep, ExternalActivity, PhaseRelease, UserPhaseAttempt
+from .models import Exercise, GuideStep, ExternalActivity, PhaseRelease, UserPhaseAttempt, QuizQuestion
 from .decorators import phase_released_required
 from .forms import UploadAnswerForm
 from submissions.models import Submission
@@ -48,8 +48,27 @@ def phase1_index(request):
     else:
         form = UploadAnswerForm()
 
+    phase_info = PhaseRelease.objects.filter(phase_number=1).first()
     exercises = Exercise.objects.filter(is_active=True).order_by("order")
-    return render(request, "phases/phase1_index.html", {"exercises": exercises, "form": form})
+    context = {
+        "phase_info": phase_info,
+        "exercises": exercises,
+        "form": form,
+    }
+    return render(request, "phases/phase1_index.html", context)
+
+@login_required
+def all_phases_quiz_view(request):
+    """Exibe todas as perguntas do quiz de todas as fases como flip cards."""
+    if not request.user.is_staff:
+        messages.error(request, "Esta área é restrita para administradores.")
+        return redirect("core:home")
+
+    questions = QuizQuestion.objects.all().order_by('?') # Ordem aleatória
+    context = {
+        'questions': questions,
+    }
+    return render(request, "phases/all_phases_quiz.html", context)
 
 @login_required
 @phase_released_required(1)
@@ -95,7 +114,14 @@ def phase2_guide(request):
             return redirect("phases:phase2_guide")
     else:
         form = UploadAnswerForm()
-    return render(request, "phases/phase2_guide.html", {"steps": steps, "form": form})
+    
+    phase_info = PhaseRelease.objects.filter(phase_number=2).first()
+    context = {
+        "steps": steps,
+        "form": form,
+        "phase_info": phase_info,
+    }
+    return render(request, "phases/phase2_guide.html", context)
 
 @login_required
 @phase_released_required(3)
@@ -115,7 +141,14 @@ def phase3_index(request):
             return redirect("phases:phase3_index")
     else:
         form = UploadAnswerForm()
-    return render(request, "phases/phase3_index.html", {"steps": steps, "form": form})
+
+    phase_info = PhaseRelease.objects.filter(phase_number=3).first()
+    context = {
+        "steps": steps,
+        "form": form,
+        "phase_info": phase_info,
+    }
+    return render(request, "phases/phase3_index.html", context)
 
 @login_required
 @phase_released_required(4)
@@ -135,10 +168,22 @@ def phase4_index(request):
             return redirect("phases:phase4_index")
     else:
         form = UploadAnswerForm()
-    return render(request, "phases/phase4_index.html", {"steps": steps, "form": form})
+
+    phase_info = PhaseRelease.objects.filter(phase_number=4).first()
+    context = {
+        "steps": steps,
+        "form": form,
+        "phase_info": phase_info,
+    }
+    return render(request, "phases/phase4_index.html", context)
 
 @login_required
 @phase_released_required(5)
-def phase5_index(request):
+def phase5_index(request): # Não há formulário de envio para a Fase 5
     activities = ExternalActivity.objects.filter(is_active=True)
-    return render(request, "phases/phase5_index.html", {"activities": activities})
+    phase_info = PhaseRelease.objects.filter(phase_number=5).first()
+    context = {
+        "activities": activities,
+        "phase_info": phase_info,
+    }
+    return render(request, "phases/phase5_index.html", context)

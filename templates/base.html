@@ -9,34 +9,54 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   <script src="{% static 'js/modal.js' %}" defer></script>
 </head>
-<body class="text-gray-900">
+<body class="text-gray-900 flex flex-col min-h-screen">
   <header class="bg-white border-b">
     <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="/" class="font-bold brand">🧮 Workshop Excel</a>
-      <div class="space-x-4 text-sm">
-        {% if request.user.is_authenticated %}
-          {% for phase in visible_phases %}
-            <a href="{% url phase.url_name %}">{{ phase.title|slice:":8" }}</a>
-          {% endfor %}
-          <a href="{% url 'core:ranking' %}">Ranking</a>
-          <a href="{% url 'accounts:profile' %}">Perfil</a>
-          <form action="{% url 'accounts:logout' %}" method="post" class="inline">
-            {% csrf_token %}
-            <button type="submit" class="text-sm hover:underline">Sair</button>
-          </form>
-        {% else %}
-          <a href="{% url 'accounts:login' %}">Entrar</a>
-          <a href="{% url 'accounts:register' %}">Cadastro</a>
-        {% endif %}
+      <!-- Esquerda: Título -->
+      <div class="flex-1">
+        <a href="/" class="font-bold brand">🧮 Workshop Excel</a>
+      </div>
+
+      <!-- Centro: Logo SENAI -->
+      <div class="flex-1 flex justify-center">
+        <img src="{% static 'img/senai-logo.png' %}" alt="Logo SENAI" class="h-8">
+      </div>
+
+      <!-- Direita: Navegação do Usuário -->
+      <div class="flex-1 flex justify-end items-center space-x-4 text-sm">
+          {% if request.user.is_authenticated %}
+            {% if request.user.is_staff %}
+              <a href="{% url 'phases:all_phases_quiz' %}">Quiz Geral</a>
+            {% endif %}
+            <a href="{% url 'core:ranking' %}">Ranking</a>
+            <a href="{% url 'accounts:profile' %}" class="inline-flex items-center">
+              <span class="mr-2 text-lg">{{ request.user.profile.avatar_emoji }}</span>
+              <span>{{ request.user.username }}</span>
+            </a>
+            <form action="{% url 'accounts:logout' %}" method="post" class="inline">
+              {% csrf_token %}
+              <button type="submit" class="text-sm hover:underline">Sair</button>
+            </form>
+          {% else %}
+            <a href="{% url 'accounts:login' %}">Entrar</a>
+            <a href="{% url 'accounts:register' %}">Cadastro</a>
+          {% endif %}
       </div>
     </nav>
   </header>
 
-  <main class="max-w-6xl mx-auto p-4">
+  <main class="max-w-6xl mx-auto p-4 w-full flex-grow">
     {% include 'components/messages.html' %}
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="text-center text-xs text-gray-500 py-8">&copy; {{ now|date:'Y' }} Workshop Excel</footer>
+  <footer class="w-full text-center text-xs text-white py-4" style="background-color: var(--excel-green);">
+    <div class="flex items-center justify-center space-x-2">
+      <img src="{% static 'img/senai-logo.png' %}" alt="Logo" class="h-5 w-15">
+      <span>&copy; {% now "Y" %} Workshop Excel</span>
+    </div>
+    <p class="mt-1">Desenvolvido por Prof. Daniel Meireles do Rego</p>
+  </footer>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

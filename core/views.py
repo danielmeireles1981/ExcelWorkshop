@@ -44,7 +44,8 @@ def home(request):
 @login_required
 def ranking(request):
     """Exibe o ranking de usuários com base na pontuação total."""
-    users_ranked = User.objects.annotate(
+    # Usamos select_related('profile') para buscar o perfil do usuário na mesma consulta
+    users_ranked = User.objects.select_related('profile').annotate(
         total_score=Sum('submission__total_score')
     ).filter(
         total_score__gt=0

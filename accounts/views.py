@@ -35,9 +35,11 @@ def register(request):
 
 def profile(request):
     profile = getattr(request.user, "profile", None)
-    total_score = Submission.objects.filter(user=request.user).aggregate(Sum('total_score'))['total_score__sum'] or 0
+    submissions = Submission.objects.filter(user=request.user).order_by("-phase")
+    total_score = submissions.aggregate(Sum('total_score'))['total_score__sum'] or 0
     context = {
         "profile": profile,
         "total_score": total_score,
+        "submissions": submissions,
     }
     return render(request, "accounts/profile.html", context)

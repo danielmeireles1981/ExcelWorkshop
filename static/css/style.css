@@ -19,12 +19,14 @@ body {
     background-color: white;
     border: 1px solid var(--medium-gray);
     border-radius: 0.75rem; /* 12px */
-    padding: 1rem; /* 16px */
-    transition: box-shadow 0.2s ease-in-out;
+    padding: 1.25rem; /* 20px */
+    transition: all 0.2s ease-in-out;
 }
 
 .card:hover {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-color: var(--excel-green);
 }
 
 /* --- Botões --- */
@@ -82,4 +84,63 @@ select {
     background-color: #e0e0e0;
     padding: 0.1em 0.2em;
     border-radius: 0.2em;
+}
+
+/* --- Flip Card Quiz --- */
+.flip-card {
+  background-color: transparent;
+  /* width e height definidos no HTML para flexibilidade */
+  perspective: 1000px; /* 3D effect */
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 0.75rem;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem; /* Aumentado para melhor espaçamento */
+}
+
+.flip-card-front {
+  background-color: white;
+  color: var(--dark-text);
+  border: 1px solid var(--medium-gray);
+}
+
+.flip-card-back {
+  background-color: var(--excel-green);
+  color: white;
+  transform: rotateY(180deg);
+  border: 1px solid var(--excel-green);
+}
+
+/* Quiz answer highlights */
+.answer-true {
+  color: var(--excel-green);
+  font-weight: 700;
+}
+.answer-false {
+  color: var(--senai-red);
+  font-weight: 700;
 }

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="max-w-4xl mx-auto text-center py-12">
   <h1 class="text-5xl font-bold text-gray-800">
@@ -8,6 +9,9 @@
     Bem-vindo ao Workshop Excel, uma plataforma gamificada desenvolvida em parceria com o SENAI para transformar seu aprendizado.
     Resolva desafios, complete fases e construa seu conhecimento passo a passo.
   </p>
+  <div class="mt-8">
+    <img src="{% static 'img/imagem1.png' %}" alt="Ilustração do Workshop Excel" class="mx-auto rounded-lg shadow-lg w-full max-w-2xl">
+  </div>
   <div class="mt-8 flex justify-center gap-4">
     <a href="{% url 'accounts:register' %}" class="btn btn-accent px-8 py-3 text-lg">
       Comece a aprender agora

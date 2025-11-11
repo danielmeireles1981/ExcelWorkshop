@@ -40,6 +40,20 @@ class ExternalActivity(models.Model):
     def __str__(self):
         return f"{self.get_provider_display()} — {self.title}"
 
+class QuizQuestion(models.Model):
+    """Questões para o quiz de cada fase."""
+    phase_number = models.PositiveIntegerField(verbose_name="Número da Fase")
+    question_text = models.TextField(verbose_name="Pergunta")
+    answer_text = models.CharField(max_length=10, verbose_name="Resposta (Verdadeiro/Falso)") # "Verdadeiro" or "Falso"
+
+    class Meta:
+        ordering = ('phase_number',)
+        verbose_name = "Questão do Quiz"
+        verbose_name_plural = "Questões do Quiz"
+
+    def __str__(self):
+        return f"Fase {self.phase_number} - {self.question_text[:50]}..."
+
 class UserPhaseAttempt(models.Model):
     """Registra quando um usuário inicia uma fase para controle de tempo."""
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -57,6 +71,8 @@ class PhaseRelease(models.Model):
     phase_number = models.PositiveIntegerField(unique=True, verbose_name="Número da Fase")
     is_released = models.BooleanField(default=False, verbose_name="Liberada para todos os usuários?")
     duration_minutes = models.PositiveIntegerField(default=60, verbose_name="Duração da Fase (minutos)")
+    story = models.TextField(blank=True, verbose_name="História da Fase")
+    image = models.ImageField(upload_to='phases_images/', blank=True, null=True, verbose_name="Imagem da Fase")
 
     class Meta:
         ordering = ('phase_number',)
