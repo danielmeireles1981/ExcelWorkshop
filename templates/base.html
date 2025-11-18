@@ -28,7 +28,6 @@
             {% if request.user.is_staff %}
               <a href="{% url 'phases:all_phases_quiz' %}">Quiz Geral</a>
             {% endif %}
-            <a href="{% url 'core:ranking' %}">Ranking</a>
             <a href="{% url 'accounts:profile' %}" class="inline-flex items-center">
               <span class="mr-2 text-lg">{{ request.user.profile.avatar_emoji }}</span>
               <span>{{ request.user.username }}</span>

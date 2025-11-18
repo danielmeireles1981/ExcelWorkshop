@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
-from django.db.models import Sum
+
 from .forms import RegisterForm
 from .models import UserProfile
 from submissions.models import Submission
@@ -36,10 +36,8 @@ def register(request):
 def profile(request):
     profile = getattr(request.user, "profile", None)
     submissions = Submission.objects.filter(user=request.user).order_by("-phase")
-    total_score = submissions.aggregate(Sum('total_score'))['total_score__sum'] or 0
     context = {
         "profile": profile,
-        "total_score": total_score,
         "submissions": submissions,
     }
     return render(request, "accounts/profile.html", context)

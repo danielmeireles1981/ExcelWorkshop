@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # Adiciona as URLs do app 'core' (home, ranking)
+    # Adiciona as URLs do app 'core' (home)
     path("", include("core.urls", namespace="core")),
     path("admin/", admin.site.urls),
     path("contas/", include("accounts.urls", namespace="accounts")),

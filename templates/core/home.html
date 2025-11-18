@@ -6,11 +6,10 @@
     <section class="relative overflow-hidden bg-gradient-to-r from-emerald-600 to-green-700 text-white">
       <div class="grid md:grid-cols-2 gap-6 items-center p-8 md:p-10">
         <div>
-          <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">Workshop Excel — O Jogo da Vida</h1>
-          <p class="mt-3 text-emerald-100">Domine fórmulas, tabelas e desafios práticos em 5 fases progressivas, com ranking.</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">Workshop Excel – O Jogo da Vida</h1>
+          <p class="mt-3 text-emerald-100">Domine fórmulas, tabelas e desafios práticos em 5 fases progressivas.</p>
           <div class="mt-6 flex flex-wrap gap-3">
             <a href="{% url 'phases:phase1_index' %}" class="btn bg-white text-emerald-700 font-bold">Começar</a>
-            <a href="{% url 'core:ranking' %}" class="btn btn-accent">Ranking</a>
           </div>
         </div>
         <div class="relative hidden md:block">
@@ -19,8 +18,6 @@
         </div>
       </div>
     </section>
-
-    
 
     <!-- Fases -->
     <section>
@@ -35,12 +32,12 @@
               <div class="flex items-center justify-between">
                 <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 text-xs font-semibold">Fase {{ phase.number }}</span>
                 {% if phase.number in completed_phases %}
-                <span class="inline-flex items-center rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[11px] font-bold">✅ Concluída</span>
+                  <span class="inline-flex items-center rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[11px] font-bold">F. Concluída</span>
                 {% endif %}
               </div>
               <div class="mt-3 font-semibold text-lg">{{ phase.title }}</div>
               {% if phase.number < 5 %}
-                <div class="mt-2 text-xs text-gray-600">🕒 Duração estimada: <span class="font-semibold">{{ phase.duration }} min</span></div>
+                <div class="mt-2 text-xs text-gray-600">⏱ Duração estimada: <span class="font-semibold">{{ phase.duration }} min</span></div>
               {% endif %}
               <div class="mt-auto pt-4 flex items-center justify-between text-sm">
                 <span class="text-emerald-700 font-semibold group-hover:underline">Acessar conteúdo</span>
@@ -55,3 +52,4 @@
     </section>
   </div>
 {% endblock %}
+
