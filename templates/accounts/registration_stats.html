@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="max-w-7xl mx-auto space-y-12 py-12">
+    <h1 class="text-2xl font-bold">Relatório de Cadastros</h1>
+    <p class="text-sm text-gray-600">Visualização dos perfis dos alunos cadastrados no Workshop Excel.</p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card">
+        <h2 class="text-lg font-semibold mb-2">Personagens DC/Marvel escolhidos</h2>
+        <canvas id="characterChart" height="200"></canvas>
+      </div>
+      <div class="card">
+        <h2 class="text-lg font-semibold mb-2">Perfis profissionais</h2>
+        <canvas id="profileChart" height="200"></canvas>
+      </div>
+      <div class="card">
+        <h2 class="text-lg font-semibold mb-2">Nível de Excel</h2>
+        <canvas id="excelChart" height="220"></canvas>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const characterLabels = {{ character_labels|default:"[]" }};
+    const characterData = {{ character_data|default:"[]" }};
+    const profileLabels = {{ profile_labels|default:"[]" }};
+    const profileData = {{ profile_data|default:"[]" }};
+    const excelLabels = {{ excel_labels|default:"[]" }};
+    const excelData = {{ excel_data|default:"[]" }};
+
+    function makeChart(ctxId, type, labels, data, extraOptions) {
+      const ctx = document.getElementById(ctxId);
+      if (!ctx || !labels.length) return;
+
+      const baseConfig = {
+        type: type,
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: [
+              'rgba(22, 163, 74, 0.8)',
+              'rgba(5, 150, 105, 0.8)',
+              'rgba(37, 99, 235, 0.8)',
+              'rgba(79, 70, 229, 0.8)',
+              'rgba(220, 38, 38, 0.8)',
+              'rgba(234, 179, 8, 0.8)',
+              'rgba(236, 72, 153, 0.8)',
+              'rgba(14, 116, 144, 0.8)',
+              'rgba(107, 114, 128, 0.8)',
+              'rgba(2, 132, 199, 0.8)'
+            ],
+            borderWidth: 1,
+          }]
+        },
+        options: Object.assign({
+          responsive: true,
+          plugins: {
+            legend: { position: 'bottom' },
+          },
+        }, extraOptions || {})
+      };
+
+      new Chart(ctx, baseConfig);
+    }
+
+    makeChart(
+      'characterChart',
+      'pie',
+      characterLabels,
+      characterData,
+      {
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: false,
+          }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { precision: 0 } }
+        }
+      }
+    );
+
+    makeChart(
+      'profileChart',
+      'bar',
+      profileLabels,
+      profileData,
+      {
+        plugins: {
+          legend: { display: false },
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { precision: 0 } }
+        }
+      }
+    );
+
+    makeChart(
+      'excelChart',
+      'pie',
+      excelLabels,
+      excelData,
+      {}
+    );
+  </script>
+{% endblock %}

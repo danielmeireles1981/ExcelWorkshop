@@ -1,24 +1,133 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="max-w-4xl mx-auto text-center py-12">
-  <h1 class="text-5xl font-bold text-gray-800">
-    Domine o Excel de forma <span style="color: var(--excel-green);">prática e divertida</span>.
-  </h1>
-  <p class="mt-4 text-lg text-gray-600">
-    Bem-vindo ao Workshop Excel, uma plataforma gamificada desenvolvida em parceria com o SENAI para transformar seu aprendizado.
-    Resolva desafios, complete fases e construa seu conhecimento passo a passo.
-  </p>
-  <div class="mt-8">
-    <img src="{% static 'img/imagem1.png' %}" alt="Ilustração do Workshop Excel" class="mx-auto rounded-lg shadow-lg w-full max-w-2xl">
-  </div>
-  <div class="mt-8 flex justify-center gap-4">
-    <a href="{% url 'accounts:register' %}" class="btn btn-accent px-8 py-3 text-lg">
-      Comece a aprender agora
-    </a>
-    <a href="{% url 'accounts:login' %}" class="btn btn-primary px-8 py-3 text-lg">
-      Já tenho uma conta
-    </a>
-  </div>
+<div class="max-w-6xl mx-auto py-12 space-y-16">
+  <!-- Hero -->
+  <section class="text-center">
+    <h1 class="text-5xl font-bold text-gray-800">
+      Domine o Excel de forma <span style="color: var(--excel-green);">prática e divertida</span>.
+    </h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Bem-vindo ao Workshop Excel, uma plataforma desenvolvida para transformar seu aprendizado.
+      Resolva desafios, complete fases e construa seu conhecimento passo a passo.
+    </p>
+    <div class="mt-8">
+      <img src="{% static 'img/imagem1.png' %}" alt="Ilustração do Workshop Excel" class="mx-auto rounded-lg shadow-lg w-full max-w-2xl">
+    </div>
+    <div class="mt-8 flex justify-center gap-4">
+      <a href="{% url 'accounts:register' %}" class="btn btn-accent px-8 py-3 text-lg">
+        Comece a aprender agora
+      </a>
+      <a href="{% url 'accounts:login' %}" class="btn btn-primary px-8 py-3 text-lg">
+        Já tenho uma conta
+      </a>
+    </div>
+  </section>
+
+  <!-- Sobre o professor -->
+  <section id="sobre-professor" class="about-instructor relative overflow-hidden rounded-2xl shadow-xl border border-emerald-100 bg-gradient-to-r from-emerald-50 via-white to-emerald-50">
+    <!-- detalhes decorativos de fundo -->
+    <div class="pointer-events-none absolute -left-10 -top-10 h-32 w-32 rounded-full bg-emerald-200/60 blur-3xl"></div>
+    <div class="pointer-events-none absolute -right-16 -bottom-16 h-40 w-40 rounded-full bg-emerald-100/70 blur-3xl"></div>
+
+    <div class="relative p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start md:items-center">
+      <!-- Coluna esquerda: avatar, nome e destaques -->
+      <div class="w-full md:w-80 flex flex-col items-start gap-4">
+        <div class="flex items-center gap-4">
+          <div class="h-35 w-40 rounded-full overflow-hidden shadow-lg">
+            <img
+              src="{% static 'img/perfil.png' %}"
+              alt="Foto do Prof. Daniel Meireles"
+              class="h-full w-full object-cover"
+            >
+          </div>
+          <div>
+            <p class="text-[11px] font-semibold tracking-[0.25em] text-emerald-700 uppercase mb-1">
+              Professor
+            </p>
+            <h2 class="text-[2xl] md:text-3xl font-extrabold text-gray-900 leading-tight">
+              Daniel Meireles do Rego
+            </h2>
+            <p class="text-xs text-gray-600">
+              Docente em TI no SENAI Rio Preto
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 text-[11px]">
+          <span class="inline-flex items-center rounded-full bg-white/90 border border-emerald-200 px-3 py-1 font-semibold text-emerald-800">
+            +25 anos de experiência
+          </span>
+          <span class="inline-flex items-center rounded-full bg-white/90 border border-emerald-200 px-3 py-1 font-semibold text-emerald-800">
+            IA · Cloud · Fullstack
+          </span>
+          <span class="inline-flex items-center rounded-full bg-white/90 border border-emerald-200 px-3 py-1 font-semibold text-emerald-800">
+            Educação &amp; Mentoria
+          </span>
+        </div>
+
+        <!-- Redes principais em formato de "chips" -->
+        <div class="mt-2 flex flex-wrap gap-2 text-sm">
+          <a href="https://www.instagram.com/daniel.meireles.rego"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1 rounded-full bg-pink-600 text-white px-3 py-1.5 text-xs font-semibold shadow-sm hover:opacity-90">
+            📸 Instagram
+          </a>
+          <a href="https://www.linkedin.com/in/dannryu/"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1 rounded-full bg-blue-700 text-white px-3 py-1.5 text-xs font-semibold shadow-sm hover:opacity-90">
+            💼 LinkedIn
+          </a>
+          <a href="https://wa.me/5517996291115"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1 rounded-full bg-green-600 text-white px-3 py-1.5 text-xs font-semibold hover:bg-green-700 shadow-sm hover:opacity-90">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Coluna direita: descrição detalhada -->
+      <div class="flex-1 space-y-3 text-sm text-gray-800 leading-relaxed">
+        <p>
+          Apaixonado por pessoas, pets, tecnologia e estudo, atuo como docente em TI no SENAI Rio Preto,
+          conectando teoria e prática para preparar os alunos para desafios reais do mercado.
+        </p>
+        <ul class="list-disc list-inside space-y-1">
+          <li>
+            Mais de <strong>25 anos de experiência</strong> em tecnologia, infraestrutura e desenvolvimento de software.
+          </li>
+          <li>
+            <strong>Bacharel</strong> em Engenharia da Computação, <strong>Mestrando</strong> em Ciência da Computação
+            (linha de pesquisa em IA) e <strong>MBA em Administração de Empresas</strong>.
+          </li>
+          <li>
+            Pós-graduações em Gestão Educacional, Coordenação Pedagógica, Gestão Estratégica e Projetos de TI,
+            Automação Industrial e atualmente cursando Engenharia Mecatrônica.
+          </li>
+          <li>
+            Especialista em <strong>Cloud Computing e Infraestrutura</strong> e <strong>Desenvolvedor Fullstack</strong> (front e backend).
+          </li>
+        </ul>
+        <p>
+          Possuo certificações de fabricantes como <strong>Microsoft, Cisco, Google, AWS, OCI, Fortinet</strong>,
+          além de certificações em <strong>Python, Java e Scrum</strong>.
+        </p>
+
+        <p class="mt-3 text-xs text-gray-600">
+          Para projetos, parcerias ou dúvidas sobre o Workshop Excel, você pode falar comigo também por
+          e-mail em
+          <a href="mailto:dannryu@gmail.com" target="_blank" rel="noopener" class="underline">
+            dannryu@gmail.com
+          </a>
+          ou acompanhar meus repositórios em
+          <a href="https://github.com/danielmeireles1981" target="_blank" rel="noopener" class="underline">
+            github.com/danielmeireles1981
+          </a>.
+        </p>
+      </div>
+    </div>
+
+   
+  </section>
 </div>
 {% endblock %}

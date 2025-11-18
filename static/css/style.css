@@ -144,3 +144,33 @@ select {
   color: var(--senai-red);
   font-weight: 700;
 }
+
+/* --- Sobre o professor --- */
+.about-instructor a {
+  text-decoration: none;
+}
+
+.about-instructor a:hover {
+  text-decoration: underline;
+}
+
+.about-instagram {
+  color: var(--senai-red);
+  font-weight: 700;
+}
+
+/* --- Emojis do cadastro (avatar) --- */
+#id_avatar_emoji {
+  gap: 1.5rem;
+  font-size: larger;
+}
+
+#id_avatar_emoji li label {
+  font-size: 1.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem .5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}

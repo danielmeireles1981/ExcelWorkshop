@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    <div>
-        <img src="{% static 'img/imagem5.png' %}" alt="Ilustração de Cadastro" class="rounded-lg">
-    </div>
-    <div>
-        <h1 class="text-2xl font-bold">Cadastro</h1>
-        <form method="post" class="space-y-4">{% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-accent w-full">Criar conta</button>
-        </form>
-    </div>
+<div class="max-w-2xl mx-auto">
+  <div class="card">
+    <h1 class="text-2xl font-bold mb-2">Cadastro</h1>
+    <p class="text-sm text-gray-600 mb-4">
+      Crie sua conta e responda às perguntas para personalizar sua experiência no Workshop Excel.
+    </p>
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-accent w-full">Criar conta</button>
+    </form>
+  </div>
 </div>
 {% endblock %}
