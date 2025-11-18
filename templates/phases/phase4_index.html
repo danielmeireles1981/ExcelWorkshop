@@ -17,14 +17,100 @@
 
   <div class="card">
     <h2 class="text-lg font-semibold mb-2">Passo a Passo do Projeto</h2>
-    <ol class="list-decimal pl-6 space-y-4">
-      {% for step in steps %}
-        <li>
-          <strong>{{ step.title }}</strong><br>
-          <span class="text-sm">{{ step.instructions }}</span>
-        </li>
-      {% endfor %}
-    </ol>
+    <div class="prose prose-sm max-w-none">
+      <div class="step-details space-y-6">
+      <div>
+        <h4 class="font-semibold text-md">🎯 1. Configuração Inicial e Títulos</h4>
+        <ol class="list-decimal list-inside mt-2 space-y-2">
+          <li><strong>Nomear a aba:</strong> Renomeie a primeira aba como <code>💰 Visão Geral de NOV/25</code>.</li>
+          <li><strong>Título principal:</strong> Na célula <code>A1</code>, digite: <code>✨ ORÇAMENTO MENSAL: O Mês da Prosperidade (NOV/2025)</code>.</li>
+          <li><strong>Bloco de Resumo:</strong> Crie os seguintes títulos:
+            <ul>
+              <li><code>E4</code>: SALDO INICIAL</li>
+              <li><code>E5</code>: TOTAL DE ENTRADAS</li>
+              <li><code>E6</code>: TOTAL DE SAÍDAS</li>
+              <li><code>E7</code>: SALDO FINAL</li>
+              <li>(Dica: Coloque bordas e um fundo diferente para destacar este bloco).</li>
+            </ul>
+          </li>
+          <li><strong>Seções Principais:</strong>
+            <ul>
+              <li><code>A4</code>: <strong>🟢 ENTRADAS (Receitas)</strong> (use cor de preenchimento verde).</li>
+              <li><code>A11</code>: <strong>🔴 SAÍDAS (Despesas)</strong> (use cor de preenchimento vermelha).</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-md">2. Seção 🟢 ENTRADAS (Receitas)</h4>
+        <p class="text-sm text-gray-600">Vamos imaginar uma pessoa que trabalha em TI e tem uma renda extra criativa.</p>
+        <ul class="list-disc list-inside mt-2 space-y-2">
+          <li>Em <code>A5</code>, <strong>Salário Fixo: "Byte de Cada Dia"</strong>. Previsto (<code>B5</code>): R$ 5.000,00. Realizado (<code>C5</code>): R$ 5.000,00.</li>
+          <li>Em <code>A6</code>, <strong>Freelas/Extra: "Pix do Dev"</strong>. Previsto (<code>B6</code>): R$ 1.200,00. Realizado (<code>C6</code>): R$ 1.550,00.</li>
+          <li>Em <code>A7</code>, <strong>Vendas Online: "Loja do Hobby"</strong>. Previsto (<code>B7</code>): R$ 350,00. Realizado (<code>C7</code>): R$ 280,00.</li>
+          <li><strong>Status (Coluna D):</strong> Em <code>D5</code>, use a fórmula <code>=SE(C5&gt;=B5; "✅ OK"; "❌ Falta")</code> e arraste para as outras entradas.</li>
+          <li><strong>Total de Entradas (Linha 8):</strong> Em <code>A8</code>, digite "TOTAL DE ENTRADAS". Em <code>B8</code>, use <code>=SOMA(B5:B7)</code>. Em <code>C8</code>, use <code>=SOMA(C5:C7)</code>. (Dica: Pinte a linha 8 com um tom de verde escuro).</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-md">3. Seção 🔴 SAÍDAS (Despesas)</h4>
+        <p class="text-sm text-gray-600">Vamos categorizar as despesas em Fixas, Variáveis e Investimentos.</p>
+        <div class="mt-2 space-y-4">
+          <p><strong>Status (Coluna D):</strong> Para todas as despesas, use a fórmula em <code>D12</code>: <code>=SE(C12&lt;=B12; "😊 Boa!"; "🚨 Estourou!")</code> e arraste para as demais.</p>
+          <div>
+            <h5 class="font-semibold">3.1 Despesas Fixas (A12:A15)</h5>
+            <ul>
+              <li><code>A12</code> <strong>Aluguel/Moradia: "Teto de Aço"</strong> - Previsto: R$ 1.500,00 | Realizado: R$ 1.500,00</li>
+              <li><code>A13</code> <strong>Internet/Streaming: "Portal do Conhecimento"</strong> - Previsto: R$ 180,00 | Realizado: R$ 180,00</li>
+              <li><code>A14</code> <strong>Assinaturas/Apps: "Acesso Premium"</strong> - Previsto: R$ 80,00 | Realizado: R$ 80,00</li>
+              <li><code>A15</code> <strong>Parcelas/Crédito: "Dívida Zero"</strong> - Previsto: R$ 300,00 | Realizado: R$ 300,00</li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="font-semibold">3.2 Despesas Variáveis (A17:A21)</h5>
+            <ul>
+              <li><code>A17</code> <strong>Mercado: "Combustível Humano"</strong> - Previsto: R$ 800,00 | Realizado: R$ 920,00</li>
+              <li><code>A18</code> <strong>Lazer/Passeios: "Recarga de Bateria"</strong> - Previsto: R$ 400,00 | Realizado: R$ 350,00</li>
+              <li><code>A19</code> <strong>Transporte/Apps: "Teletransporte Pessoal"</strong> - Previsto: R$ 250,00 | Realizado: R$ 200,00</li>
+              <li><code>A20</code> <strong>Saúde/Bem-Estar: "Upgrade de Corpo"</strong> - Previsto: R$ 150,00 | Realizado: R$ 100,00</li>
+              <li><code>A21</code> <strong>Presente/Doação: "Generosidade em Bits"</strong> - Previsto: R$ 100,00 | Realizado: R$ 150,00</li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="font-semibold">3.3 Investimentos (A23:A25)</h5>
+            <ul>
+              <li><code>A23</code> <strong>Reserva de Emergência: "Guarda-Chuva de Ouro"</strong> - Previsto: R$ 500,00 | Realizado: R$ 500,00</li>
+              <li><code>A24</code> <strong>Ações/Fundos: "Construindo o Império"</strong> - Previsto: R$ 500,00 | Realizado: R$ 500,00</li>
+              <li><code>A25</code> <strong>Cursos/Educação: "XP Ilimitada"</strong> - Previsto: R$ 200,00 | Realizado: R$ 150,00</li>
+            </ul>
+          </div>
+          <p><strong>Total de Saídas (Linha 27):</strong> Em <code>A27</code>, digite "TOTAL DE SAÍDAS". Em <code>B27</code>, use <code>=SOMA(B12:B15;B17:B21;B23:B25)</code>. Em <code>C27</code>, use <code>=SOMA(C12:C15;C17:C21;C23:C25)</code>. (Dica: Pinte a linha 27 com um tom de vermelho escuro).</p>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-md">4. Cálculo do RESUMO GERAL</h4>
+        <p class="text-sm text-gray-600">Preencha as células do bloco de resumo (E4:F7) usando os valores REALIZADOS.</p>
+        <ul class="list-disc list-inside mt-2 space-y-2">
+          <li>Em <code>F4</code> (Saldo Inicial): Digite um valor inicial, por exemplo, <code>R$ 1.000,00</code>.</li>
+          <li>Em <code>F5</code> (Total de Entradas): Use a fórmula <code>=C8</code>.</li>
+          <li>Em <code>F6</code> (Total de Saídas): Use a fórmula <code>=C27</code>.</li>
+          <li>Em <code>F7</code> (Saldo Final): Use a fórmula <code>=F4+F5-F6</code>.</li>
+          <li><strong>Dica de Formatação:</strong> Use <strong>Formatação Condicional</strong> na célula <code>F7</code> para que ela fique verde se o valor for maior que zero e vermelha se for menor que zero.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-md">5. Finalização e Toques Extras</h4>
+        <ul class="list-disc list-inside mt-2 space-y-2">
+          <li><strong>Formato de Moeda:</strong> Selecione as colunas de valores (B e C) e aplique o formato de moeda (R$).</li>
+          <li><strong>Largura das Colunas:</strong> Ajuste a largura das colunas para que todos os textos fiquem visíveis.</li>
+          <li><strong>Gráfico de Pizza:</strong> Selecione as categorias de despesas (ex: <code>A17:A21</code>) e seus valores realizados correspondentes (<code>C17:C21</code>). Vá em <strong>Inserir &gt; Gráfico &gt; Pizza</strong> para criar um gráfico visual das suas despesas variáveis. Posicione-o ao lado do seu resumo geral.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="card mt-8">
