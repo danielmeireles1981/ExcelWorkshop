@@ -27,9 +27,8 @@
           {% if request.user.is_authenticated %}
             {% if request.user.is_staff %}
               <a href="{% url 'admin:index' %}" target="_blank">Admin</a>
-              <a href="{% url 'accounts:registration_stats' %}" target="_blank">Relatório de Cadastros</a>
-            {% else %}
-              <a href="{% url 'phases:all_phases_quiz' %}">Quiz Geral</a>
+              <a href="{% url 'accounts:registration_stats' %}" target="_blank">Relatório</a>
+              <a href="{% url 'phases:all_phases_quiz' %}">Quiz</a>
             {% endif %}
             <a href="{% url 'accounts:profile' %}" class="inline-flex items-center">
               <span class="mr-2 text-lg">{{ request.user.profile.avatar_emoji }}</span>

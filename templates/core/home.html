@@ -25,9 +25,7 @@
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {% for phase in visible_phases %}
           <a href="{% url phase.url_name %}" class="group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-xl">
-            {% with img_name='img/imagem'|add:phase.number|add:'.png' %}
-              <img src="{% static img_name %}" alt="Fase {{ phase.number }}" class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition" />
-            {% endwith %}
+           
             <div class="relative z-10 flex flex-col h-full">
               <div class="flex items-center justify-between">
                 <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 text-xs font-semibold">Fase {{ phase.number }}</span>
