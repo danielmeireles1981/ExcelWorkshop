@@ -4,4 +4,5 @@ from . import views
 app_name = "core"
 urlpatterns = [
     path("", views.home, name="home"),
+    path("material/pdf/", views.materials_pdf, name="materials_pdf"),
 ]

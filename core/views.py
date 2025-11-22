@@ -1,7 +1,10 @@
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.template.loader import render_to_string
 from submissions.models import Submission
-from phases.models import PhaseRelease
+from phases.models import Exercise, ExternalActivity, GuideStep, PhaseRelease
+from .pdf import build_materials_context, resolve_static_base_url
 
 
 def home(request):
@@ -44,3 +47,29 @@ def home(request):
 
     return render(request, "core/landing.html")
 
+
+@login_required
+def materials_pdf(request):
+    """
+    Gera um PDF consolidado com o material das fases.
+    """
+    try:
+        # Importamos aqui para evitar falha na inicializacao do Django se libs do sistema faltarem
+        from weasyprint import HTML
+    except (ImportError, OSError) as exc:
+        return HttpResponse(
+            "WeasyPrint nao conseguiu carregar as dependencias do sistema. "
+            "Instale o runtime do GTK/Pango conforme a documentacao oficial: "
+            "https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#windows"
+            f" (detalhes: {exc})",
+            status=500,
+        )
+
+    static_base_url = resolve_static_base_url(request=request)
+    context = build_materials_context(static_base_url=static_base_url)
+    html = render_to_string("materials_pdf.html", context)
+    pdf_bytes = HTML(string=html, base_url=static_base_url).write_pdf()
+
+    response = HttpResponse(pdf_bytes, content_type="application/pdf")
+    response["Content-Disposition"] = 'inline; filename="excel-workshop-material.pdf"'
+    return response

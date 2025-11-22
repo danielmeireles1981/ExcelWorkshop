@@ -28,6 +28,29 @@
     </div>
   {% endif %}
 
+  {% if profile.favorite_character %}
+    <div class="card">
+      <h2 class="text-xl font-semibold mb-4">Sua Personalidade Excel: Herói ou Vilão? 🦸/🦹</h2>
+      <p class="text-gray-700">
+        {% if "Homem de Ferro" in profile.favorite_character %}
+          Assim como Tony Stark, você adora tecnologia e inovação. Sua abordagem no Excel é construir planilhas robustas, cheias de fórmulas complexas e automações, como se estivesse montando uma nova armadura para resolver qualquer desafio.
+        {% elif "Batman" in profile.favorite_character %}
+          Você é estratégico e meticuloso como o Batman. Cada célula da sua planilha é planejada e cada fórmula é uma ferramenta no seu cinto de utilidades. Você prefere a precisão e a análise detalhada para antecipar todos os cenários.
+        {% elif "Capitão América" in profile.favorite_character or "Capitã Marvel" in profile.favorite_character %}
+          Com um forte senso de liderança, você usa o Excel para trazer ordem e clareza. Suas planilhas são bem estruturadas e fáceis de entender, servindo como um guia confiável para toda a equipe.
+        {% elif "Coringa" in profile.favorite_character %}
+          Como o Coringa, você vê o Excel como um playground para o caos criativo. Você adora usar formatação condicional e fórmulas inesperadas para criar planilhas que quebram padrões, transformando a análise de dados em uma verdadeira obra de arte anárquica.
+        {% elif "Thanos" in profile.favorite_character %}
+          Com a mentalidade de Thanos, você busca o equilíbrio perfeito em seus dados. Seu objetivo é usar o Excel para eliminar redundâncias e otimizar tudo com precisão implacável, garantindo que apenas os dados mais relevantes sobrevivam.
+        {% elif "Mulher-Maravilha" in profile.favorite_character or "Superman" in profile.favorite_character %}
+          Você usa o Excel com força e integridade. Suas planilhas são um pilar de confiança e verdade, usando fórmulas poderosas para trazer luz aos dados mais complexos e garantir que a justiça e a precisão prevaleçam.
+        {% else %}
+          Você traz uma perspectiva única para a análise de dados. Assim como seu personagem, você usa suas habilidades especiais para encontrar soluções criativas e eficientes no Excel, muitas vezes surpreendendo a todos com sua abordagem original.
+        {% endif %}
+      </p>
+    </div>
+  {% endif %}
+
   <div class="card">
     <h2 class="text-xl font-semibold mb-4">Meus Envios</h2>
     <div class="overflow-x-auto">
@@ -74,4 +97,3 @@
   </div>
 </div>
 {% endblock %}
-

@@ -112,8 +112,10 @@
         </ul>
       </div>
       <div>
-        <p>Sugestão de visual final:</p>
-        <img src="{% static 'img/orcamento.png' %}" alt="Print da tela do orçamento" class="w-full h-full object-cover rounded-t-lg mb-4">
+        <p>Sugestão de visual final (clique na imagem para abrir em nova guia):</p>
+        <a href="{% static 'img/orcamento.png' %}" target="_blank">
+          <img src="{% static 'img/orcamento.png' %}" alt="Print da tela do orçamento" class="w-full h-full object-cover rounded-t-lg mb-4 cursor-pointer hover:opacity-75 transition">
+        </a>
       </div>
       
     </div>

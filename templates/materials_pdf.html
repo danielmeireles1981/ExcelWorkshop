@@ -1,0 +1,322 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Excel Workshop - Material Completo</title>
+  <style>
+    :root {
+      --excel-green: #1f8f4d;
+      --gray-700: #374151;
+      --gray-500: #6b7280;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #111827;
+      background: #f3f4f6;
+      margin: 0;
+      padding: 24px;
+    }
+    .page {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    }
+    .page-break { page-break-after: always; }
+    h1 { margin: 0 0 8px 0; font-size: 26px; color: var(--excel-green); }
+    h2 { margin: 8px 0 10px 0; font-size: 20px; color: #0f172a; }
+    h3 { margin: 18px 0 8px 0; font-size: 16px; color: var(--gray-700); }
+    p { margin: 6px 0; line-height: 1.5; }
+    .muted { color: var(--gray-500); font-size: 13px; }
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-500);
+    }
+    .story { white-space: pre-wrap; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 6px;
+      text-align: left;
+    }
+    th { background: #f8fafc; font-weight: 600; color: var(--gray-700); }
+    ul.bullets { padding-left: 18px; }
+    ul.bullets li { margin: 6px 0; }
+    ol.steps { padding-left: 18px; }
+    ol.steps li { margin: 10px 0; }
+    .pill {
+      display: inline-block;
+      background: #e8f5ec;
+      color: var(--excel-green);
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .banner {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      margin: 10px 0 14px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="eyebrow">Excel Workshop</div>
+    <h1>Material Completo</h1>
+    <p class="muted">Gerado em {{ generated_at|date:"d/m/Y H:i" }}</p>
+    <p>Guia consolidado com hist&oacute;rias, passos, tabelas e imagens das fases 1 a 5.</p>
+  </div>
+
+  <div class="page page-break">
+    <div class="eyebrow">Fase 01</div>
+    <h2>Revis&atilde;o de Excel</h2>
+    <img class="banner" src="{{ static_base_url }}img/imagem1.png" alt="Fase 01">
+    {% if phase1_info and phase1_info.story %}
+      <p class="story">{{ phase1_info.story }}</p>
+    {% endif %}
+
+    <h3>Base de dados para exerc&iacute;cios</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Vendedor</th>
+          <th>Regi&atilde;o</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Valor Unit&aacute;rio</th>
+          <th>Total Venda</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>05/01/2023</td><td>Fernanda</td><td>SP</td><td>Notebook</td><td>2</td><td>R$ 3.500,00</td><td>R$ 7.000,00</td></tr>
+        <tr><td>07/01/2023</td><td>Marcos</td><td>MG</td><td>Monitor</td><td>1</td><td>R$ 1.200,00</td><td>R$ 1.200,00</td></tr>
+        <tr><td>08/01/2023</td><td>Ana</td><td>RJ</td><td>Mouse</td><td>5</td><td>R$ 120,00</td><td>R$ 600,00</td></tr>
+        <tr><td>10/01/2023</td><td>Carlos</td><td>SP</td><td>Teclado</td><td>4</td><td>R$ 300,00</td><td>R$ 1.200,00</td></tr>
+        <tr><td>15/01/2023</td><td>Fernanda</td><td>MG</td><td>Monitor</td><td>3</td><td>R$ 1.150,00</td><td>R$ 3.450,00</td></tr>
+        <tr><td>20/01/2023</td><td>Marcos</td><td>SP</td><td>Notebook</td><td>3</td><td>R$ 3.400,00</td><td>R$ 10.200,00</td></tr>
+        <tr><td>25/01/2023</td><td>Ana</td><td>RJ</td><td>Monitor</td><td>2</td><td>R$ 1.250,00</td><td>R$ 2.500,00</td></tr>
+        <tr><td>28/01/2023</td><td>Fernanda</td><td>SP</td><td>Teclado</td><td>1</td><td>R$ 290,00</td><td>R$ 290,00</td></tr>
+        <tr><td>30/01/2023</td><td>Carlos</td><td>MG</td><td>Mouse</td><td>10</td><td>R$ 100,00</td><td>R$ 1.000,00</td></tr>
+        <tr><td>01/02/2023</td><td>Marcos</td><td>SP</td><td>Teclado</td><td>6</td><td>R$ 310,00</td><td>R$ 1.860,00</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Exerc&iacute;cios</h3>
+    <ul class="bullets">
+      {% for ex in exercises %}
+        <li><strong>{{ ex.title }}</strong> &mdash; F&oacute;rmula de refer&ecirc;ncia: {{ ex.reference_formula }}.</li>
+      {% empty %}
+        <li>Nenhum exerc&iacute;cio ativo cadastrado.</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="page page-break">
+    <div class="eyebrow">Fase 02</div>
+    <h2>Controle de Estoque</h2>
+    <img class="banner" src="{{ static_base_url }}img/imagem3.png" alt="Fase 02">
+    {% if phase2_info and phase2_info.story %}
+      <p class="story">{{ phase2_info.story }}</p>
+    {% endif %}
+    <p>Utilize a tabela abaixo como base para realizar os exerc&iacute;cios propostos.</p>
+
+    <h3>Tabela de dados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>C&oacute;digo</th>
+          <th>Descri&ccedil;&atilde;o</th>
+          <th>Anterior</th>
+          <th>Entrada</th>
+          <th>Sa&iacute;da</th>
+          <th>Estoque M&iacute;nimo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1000</td><td>Multifuncional HP 1320</td><td>100</td><td>50</td><td>70</td><td>100</td></tr>
+        <tr><td>1001</td><td>Teclado</td><td>200</td><td>100</td><td>125</td><td>50</td></tr>
+        <tr><td>1002</td><td>Mouse &oacute;ptico</td><td>250</td><td>100</td><td>120</td><td>100</td></tr>
+        <tr><td>1003</td><td>Monitor de Plasma 17"</td><td>25</td><td>50</td><td>30</td><td>75</td></tr>
+        <tr><td>1004</td><td>Gravador de DVD</td><td>150</td><td>100</td><td>120</td><td>100</td></tr>
+        <tr><td>1005</td><td>Caixa de Som</td><td>170</td><td>10</td><td>120</td><td>100</td></tr>
+        <tr><td>1006</td><td>Microfone</td><td>200</td><td>150</td><td>100</td><td>75</td></tr>
+        <tr><td>1007</td><td>Webcam</td><td>150</td><td>100</td><td>75</td><td>75</td></tr>
+        <tr><td>1008</td><td>Pen drive</td><td>500</td><td>150</td><td>200</td><td>200</td></tr>
+        <tr><td>1009</td><td>Impressora HP 5650</td><td>50</td><td>100</td><td>70</td><td>100</td></tr>
+        <tr><td>1010</td><td>C&acirc;mera Digital Sony</td><td>70</td><td>50</td><td>25</td><td>100</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Passo a passo</h3>
+    <ol class="steps">
+      {% for step in phase2_steps %}
+        <li>
+          <strong>{{ step.title }}</strong><br>
+          <span>{{ step.instructions }}</span>
+        </li>
+      {% empty %}
+        <li>Nenhum passo cadastrado para esta fase.</li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="page page-break">
+    <div class="eyebrow">Fase 03</div>
+    <h2>Gratifica&ccedil;&atilde;o de Natal com PROCV</h2>
+    <img class="banner" src="{{ static_base_url }}img/imagem5.png" alt="Fase 03">
+    {% if phase3_info and phase3_info.story %}
+      <p class="story">{{ phase3_info.story }}</p>
+    {% endif %}
+    <p>Preencha as tabelas abaixo para calcular abonos com PROCV.</p>
+
+    <h3>Tabela principal: Funcion&aacute;rios</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Funcion&aacute;rio</th>
+          <th>Sal&aacute;rio (R$)</th>
+          <th>Percentual</th>
+          <th>Abono (R$)</th>
+          <th>Sal&aacute;rio Final</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Carlos</td><td>500,00</td><td></td><td></td><td></td></tr>
+        <tr><td>Pedro</td><td>750,00</td><td></td><td></td><td></td></tr>
+        <tr><td>Ant&ocirc;nio</td><td>1.500,00</td><td></td><td></td><td></td></tr>
+        <tr><td>Maria</td><td>2.500,00</td><td></td><td></td><td></td></tr>
+        <tr><td>Cl&aacute;udio</td><td>2.000,00</td><td></td><td></td><td></td></tr>
+        <tr><td>Joaquim</td><td>1.000,00</td><td></td><td></td><td></td></tr>
+        <tr><td>Marcos</td><td>400,00</td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Tabela de abono</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Sal&aacute;rio (R$)</th>
+          <th>Percentual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>400,00</td><td>100%</td></tr>
+        <tr><td>1.000,00</td><td>50%</td></tr>
+        <tr><td>2.000,00</td><td>10%</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Passo a passo</h3>
+    <ol class="steps">
+      {% for step in phase3_steps %}
+        <li>
+          <strong>{{ step.title }}</strong><br>
+          <span>{{ step.instructions }}</span>
+        </li>
+      {% empty %}
+        <li>Nenhum passo cadastrado para esta fase.</li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="page page-break">
+    <div class="eyebrow">Fase 04</div>
+    <h2>Desafio Final: Or&ccedil;amento Pessoal Completo</h2>
+    <img class="banner" src="{{ static_base_url }}img/imagem4.png" alt="Fase 04">
+    {% if phase4_info and phase4_info.story %}
+      <p class="story">{{ phase4_info.story }}</p>
+    {% endif %}
+    <p>Monte uma planilha de or&ccedil;amento pessoal completa e pronta para uso.</p>
+
+    <h3>Passo a passo sugerido</h3>
+    <ol class="steps">
+      <li>
+        <strong>Configura&ccedil;&atilde;o inicial e t&iacute;tulos</strong>
+        <ul class="bullets">
+          <li>Renomeie a aba para <strong>Vis&atilde;o Geral de NOV/25</strong>.</li>
+          <li>Em <code>A1</code>, t&iacute;tulo: <strong>OR&Ccedil;AMENTO MENSAL: O M&ecirc;s da Prosperidade (NOV/2025)</strong>.</li>
+          <li>Bloco de resumo em <code>E4:F7</code> com Saldo Inicial, Total de Entradas, Total de Sa&iacute;das e Saldo Final.</li>
+          <li>Destaque <strong>ENTRADAS</strong> em <code>A4</code> (cor verde) e <strong>SA&Iacute;DAS</strong> em <code>A11</code> (cor vermelha).</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Se&ccedil;&atilde;o de Entradas (Receitas)</strong>
+        <ul class="bullets">
+          <li><code>A5</code> Sal&aacute;rio Fixo &ldquo;Byte de Cada Dia&rdquo; &mdash; Previsto: R$ 5.000,00 | Realizado: R$ 5.000,00.</li>
+          <li><code>A6</code> Freelas/Extra &ldquo;Pix do Dev&rdquo; &mdash; Previsto: R$ 1.200,00 | Realizado: R$ 1.550,00.</li>
+          <li><code>A7</code> Vendas Online &ldquo;Loja do Hobby&rdquo; &mdash; Previsto: R$ 350,00 | Realizado: R$ 280,00.</li>
+          <li>Status em <code>D5</code>: <code>=SE(C5&gt;=B5; "OK"; "Falta")</code>, arraste para baixo.</li>
+          <li>Totais em <code>B8</code> e <code>C8</code> com <code>=SOMA(...)</code>; destaque a linha 8 com verde escuro.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Se&ccedil;&atilde;o de Sa&iacute;das (Despesas)</strong>
+        <ul class="bullets">
+          <li>Status em <code>D12</code>: <code>=SE(C12&lt;=B12; "Boa"; "Estourou")</code>, arraste para todas.</li>
+          <li>Fixas: Aluguel/Moradia, Internet/Streaming, Assinaturas/Apps, Parcelas/Cr&eacute;dito.</li>
+          <li>Vari&aacute;veis: Mercado, Lazer/Passeios, Transporte/Apps, Sa&uacute;de/Bem-Estar, Presente/Doa&ccedil;&atilde;o.</li>
+          <li>Investimentos: Reserva de Emerg&ecirc;ncia, A&ccedil;&otilde;es/Fundos, Cursos/Educa&ccedil;&atilde;o.</li>
+          <li>Totais em <code>B27</code> e <code>C27</code> somando todas as sublistas; destaque com vermelho escuro.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>C&aacute;lculo do resumo geral</strong>
+        <ul class="bullets">
+          <li>Saldo Inicial em <code>F4</code> (ex.: R$ 1.000,00).</li>
+          <li>Total de Entradas <code>F5 = C8</code>, Sa&iacute;das <code>F6 = C27</code>, Saldo Final <code>F7 = F4+F5-F6</code>.</li>
+          <li>Formata&ccedil;&atilde;o condicional em <code>F7</code>: verde se positivo, vermelho se negativo.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Toques finais</strong>
+        <ul class="bullets">
+          <li>Formato de moeda nas colunas B e C; ajuste de largura das colunas.</li>
+          <li>Gr&aacute;fico de pizza com <code>A17:A21</code> x <code>C17:C21</code> para despesas vari&aacute;veis.</li>
+          <li>Indicadores de percentuais de Receita e Despesas Previstas x Realizadas.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <p class="muted">Sugest&atilde;o visual (print):</p>
+    <img src="{{ static_base_url }}img/orcamento.png" alt="Print da tela do or&ccedil;amento">
+  </div>
+
+  <div class="page">
+    <div class="eyebrow">Fase 05</div>
+    <h2>Atividades Finais</h2>
+    <img class="banner" src="{{ static_base_url }}img/imagem6.png" alt="Fase 05">
+    {% if phase5_info and phase5_info.story %}
+      <p class="story">{{ phase5_info.story }}</p>
+    {% endif %}
+    <p>Atividades externas para revisar o conte&uacute;do.</p>
+    <ul class="bullets">
+      {% for a in activities %}
+        <li><strong>{{ a.title }}</strong> &mdash; {{ a.get_provider_display }} &mdash; {{ a.url }}</li>
+      {% empty %}
+        <li>Nenhuma atividade final cadastrada.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
